@@ -1,0 +1,26 @@
+{
+  "name": "api_teachers_crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenrealesg/api_teachers_crud.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevenrealesg/api_teachers_crud/issues"
+  },
+  "homepage": "https://github.com/stevenrealesg/api_teachers_crud#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.2",
+    "morgan": "^1.10.0"
+  }
+}
