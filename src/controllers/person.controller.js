@@ -1,10 +1,13 @@
 const Person = require('../models/Person')
+const bcrypt = require("bcrypt")
 
 exports.addPerson = async (req, res) => {
     try {
         const { ID, name, lastName, dateBirth, type, user, password } = req.body;
-
-        const person = new Person({ ID, name, lastName, dateBirth, type, user, password });
+        const salt = await bcrypt.genSalt(10);
+        const passwordEncrypted = await bcrypt.hash(password, salt);
+        console.log(passwordEncrypted)
+        const person = new Person({ ID, name, lastName, dateBirth, type, user, password: passwordEncrypted });
         await person.save();
 
         res.status(200).json({message: "Person saved."});
