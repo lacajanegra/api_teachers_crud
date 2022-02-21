@@ -1,12 +1,15 @@
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
-const port = process.env.PORT || 3000
+const dotenv = require('dotenv');
 const connectionBD = require('../src/config/db.connection')
 const routesPerson = require('./routes/person.route') 
 const routesCourse = require('./routes/course.route') 
 const routesScore = require('./routes/score.route') 
 const routeLogin = require('./routes/login.route')
+
+dotenv.config();
+const port = process.env.PORT || 3000
 
 connectionBD();
 

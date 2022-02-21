@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const Person = require('../models/Person')
 exports.login = async(req, res) => {
     try {
@@ -9,9 +10,26 @@ exports.login = async(req, res) => {
         ? false
         : await bcrypt.compare(password, person.password)
 
-        !(person && passwordCorrect )
-        ? res.status(401).json({message: "invalid user o password"})
-        : res.status(200).json(person)
+        if(!(person && passwordCorrect )){
+            res.status(401).json({message: "invalid user o password"})
+        }else{
+            const token = jwt.sign({
+                _id: person._id,
+                name: person.name,
+                lastName: person.lastName,
+                type: person.type,
+                user: person.type
+            },process.env.SECRET_WORD)
+
+
+            res.status(200).json({
+                name: person.name,
+                lastName: person.lastName,
+                type: person.type,
+                user: person.type,
+                token
+            })
+        }
 
         
     } catch (error) {
