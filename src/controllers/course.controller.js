@@ -6,7 +6,7 @@ exports.addCourse = async (req, res) => {
         const { code, name, teacher } = req.body
         const course = new Course({ code, name, teacher });
         await course.save();
-        res.status(200).json({message: "Corse saved."});
+        res.status(200).json({message: "Course saved."});
     } catch (error) {
         console.error(error)
         res.status(500).json({message: "Error when saving course data."});
