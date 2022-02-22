@@ -14,7 +14,7 @@ exports.authorization = (req, res, next) => {
         req.userId = decodedToken._id
         next()
     } catch (error) {
-        res.status(401).json({message: "Invalid token"})
+        res.status(401).json({message: "Unauthorized action."})
     }
     
 }

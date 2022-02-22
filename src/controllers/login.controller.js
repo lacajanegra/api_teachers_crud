@@ -18,7 +18,7 @@ exports.login = async(req, res) => {
                 name: person.name,
                 lastName: person.lastName,
                 type: person.type,
-                user: person.type
+                user: person.user
             },process.env.SECRET_WORD)
 
 
@@ -26,7 +26,7 @@ exports.login = async(req, res) => {
                 name: person.name,
                 lastName: person.lastName,
                 type: person.type,
-                user: person.type,
+                user: person.user,
                 token
             })
         }
