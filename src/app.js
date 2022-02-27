@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const dotenv = require('dotenv');
+const cors = require('cors');
 const connectionBD = require('../src/config/db.connection')
 const routesPerson = require('./routes/person.route') 
 const routesCourse = require('./routes/course.route') 
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000
 
 connectionBD();
 
+app.use(cors())
 app.use(express.json())
 app.use(morgan("dev"))
 
