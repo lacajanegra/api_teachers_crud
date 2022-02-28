@@ -13,6 +13,16 @@ exports.addCourse = async (req, res) => {
     }
 }
 
+exports.getCourses = async (req, res) => {
+    try {
+        const courses = await Course.find().populate('teacher')
+        res.status(200).json({data: courses})
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: "Error when obtaining courses."});
+    }
+}
+
 exports.getCourseByStudent = async (req, res) => {
     try {
         const { id } = req.params

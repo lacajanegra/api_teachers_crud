@@ -17,9 +17,10 @@ exports.addPerson = async (req, res) => {
     }
 }
 
-exports.getStudents = async (req, res) => {
+exports.getPersons = async (req, res) => {
     try {
-        const students = await Person.find({type: "Student"})
+        const { type } = req.params
+        const students = type && type == "all" ? await Person.find() : await Person.find({type})
         res.status(200).json({data: students})
     } catch (error) {
         console.error(error)
