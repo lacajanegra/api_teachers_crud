@@ -26,7 +26,12 @@ exports.getCourses = async (req, res) => {
 exports.getCourseByStudent = async (req, res) => {
     try {
         const { id } = req.params
-        const courses = await Score.find({student: id}, {course:1}).populate('course')
+        const courses = await Score.find({student: id}, {course:1})
+                        .populate('course')
+                        .populate({
+                            path: 'course',
+                            populate: 'teacher'
+                        })
         res.status(200).json({data: courses})
     } catch (error) {
         console.error(error)
@@ -37,8 +42,9 @@ exports.getCourseByStudent = async (req, res) => {
 exports.getStudentsByCourse = async (req, res) => {
     try {
         const { id } = req.params
+        const course = await Course.findById(id).populate('teacher')
         const students = await Score.find({course: id}, {student:1}).populate('student')
-        res.status(200).json({data: students})
+        res.status(200).json({data: {course, students}})
     } catch (error) {
         console.error(error)
         res.status(500).json({message: "Error when obtaining students."});
