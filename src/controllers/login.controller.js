@@ -23,6 +23,7 @@ exports.login = async(req, res) => {
 
 
             res.status(200).json({
+                _id: person._id,
                 name: person.name,
                 lastName: person.lastName,
                 type: person.type,
